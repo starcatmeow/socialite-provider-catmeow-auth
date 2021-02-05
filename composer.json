@@ -1,10 +1,10 @@
 {
-    "name": "littleskinchina/bs-socialite-provider-littleskin",
-    "description": "LittleSkin OAuth2 Provider for Laravel Socialite",
+    "name": "starcatmeow/socialite-provider-catmeow-auth",
+    "description": "Catmeow Auth OpenID Connect Provider for Laravel Socialite",
     "license": "MIT",
     "authors": [{
-        "name": "Asnxthaony",
-        "email": "asnxthaony@outlook.com"
+        "name": "Dongruixuan Li",
+        "email": "dongruixuan@hotmail.com"
     }],
     "require": {
         "php": "^7.0",
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "LittleSkinChina\\BsSocialiteProviderLittleSkin\\": ""
+            "StarCatmeow\\SocialiteProviderCatmeowAuth\\": ""
         }
     }
 }

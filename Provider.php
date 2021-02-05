@@ -1,6 +1,6 @@
 <?php
 
-namespace LittleSkinChina\BsSocialiteProviderLittleSkin;
+namespace StarCatmeow\SocialiteProviderCatmeowAuth;
 
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use SocialiteProviders\Manager\OAuth2\User;
@@ -10,7 +10,7 @@ class Provider extends AbstractProvider
     /**
      * Unique Provider Identifier.
      */
-    const IDENTIFIER = 'LITTLESKIN';
+    const IDENTIFIER = 'CATMEOWAUTH';
 
     /**
      * {@inheritdoc}
@@ -22,7 +22,7 @@ class Provider extends AbstractProvider
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('https://mcskin.littleservice.cn/oauth/authorize', $state);
+        return $this->buildAuthUrlFromBase('https://openid.starcatmeow.cn/auth', $state);
     }
 
     /**
@@ -30,7 +30,7 @@ class Provider extends AbstractProvider
      */
     protected function getTokenUrl()
     {
-        return 'https://mcskin.littleservice.cn/oauth/token';
+        return 'https://openid.starcatmeow.cn/token';
     }
 
     /**
@@ -38,11 +38,7 @@ class Provider extends AbstractProvider
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get('https://mcskin.littleservice.cn/api/user', [
-            'headers' => [
-                'Authorization' => 'Bearer '.$token,
-            ],
-        ]);
+        $response = $this->getHttpClient()->get('https://openid.starcatmeow.cn/me?access_token='+$token);
 
         $user = json_decode($response->getBody(), true);
 
@@ -55,8 +51,8 @@ class Provider extends AbstractProvider
     protected function mapUserToObject(array $user)
     {
         return (new User())->setRaw($user)->map([
-            'id'       => $user['uid'],
-            'nickname' => $user['nickname'],
+            'id'       => $user['sub'],
+            'nickname' => $user['name'],
             'name'     => null,
             'email'    => $user['email'],
             'avatar'   => null,

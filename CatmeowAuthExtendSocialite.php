@@ -1,16 +1,16 @@
 <?php
 
-namespace LittleSkinChina\BsSocialiteProviderLittleSkin;
+namespace StarCatmeow\SocialiteProviderCatmeowAuth;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;
 
-class LittleSkinExtendSocialite
+class CatmeowAuthExtendSocialite
 {
     /**
      * Execute the provider.
      */
     public function handle(SocialiteWasCalled $socialiteWasCalled)
     {
-        $socialiteWasCalled->extendSocialite('littleskin', __NAMESPACE__.'\Provider');
+        $socialiteWasCalled->extendSocialite('catmeowauth', __NAMESPACE__.'\Provider');
     }
 }
